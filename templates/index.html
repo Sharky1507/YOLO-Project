@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Powered Room Assistant</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+        #video-container {
+            width: 640px;
+            margin: auto;
+            border: 2px solid black;
+        }
+        #chat-box {
+            width: 60%;
+            margin: 20px auto;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        #chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            text-align: left;
+        }
+        #user-input {
+            width: 80%;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI-Powered Room Assistant 👁️</h1>
+
+    <!-- Video Feed -->
+    <div id="video-container">
+        <img src="{{ url_for('video_feed') }}" width="100%">
+    </div>
+
+    <!-- Chat Box -->
+    <div id="chat-box">
+        <h3>Chat with AI</h3>
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Type your message..." onkeydown="handleKey(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function handleKey(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            let userInput = document.getElementById("user-input").value;
+            if (!userInput.trim()) return;
+
+            let chatMessages = document.getElementById("chat-messages");
+            
+            // Display user message
+            chatMessages.innerHTML += `<p><b>You:</b> ${userInput}</p>`;
+            
+            // Send message to Flask API
+            fetch("/chat", {
+                method: "POST",
+                body: JSON.stringify({ message: userInput }),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                chatMessages.innerHTML += `<p><b>AI:</b> ${data.response}</p>`;
+                document.getElementById("user-input").value = "";
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+    </script>
+</body>
+</html>
