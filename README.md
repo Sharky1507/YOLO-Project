@@ -11,6 +11,14 @@ This is a proof-of-concept Flask application that integrates:
 - Streams real-time webcam feed with YOLO object detection.
 - Allows users to chat with Gemini AI.
 - AI responses consider detected objects in the environment.
+- Can be deployed on cloud platforms (e.g., Heroku, AWS).
+- Uses Flask + Gunicorn, making it lightweight and efficient.
+- Handles multiple users simultaneously via HTTP requests.
+
+Adaptability:
+  - Supports multiple camera sources (e.g., mobile, IoT cameras).
+  - Can be extended with more AI models (e.g., facial recognition, sentiment analysis).
+  - Optimized for various hardware (local, edge devices, cloud servers).
 
 ## Installation
 ### Prerequisites
