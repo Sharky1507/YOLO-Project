@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 model = YOLO("yolov8n.pt")
 
-genai.configure(api_key="AIzaSyCvhHTnUry-WUB6C3gTBZpJSHcP5qN7P04")  
+genai.configure(api_key="")  
 gemini_model = genai.GenerativeModel('gemini-2.0-flash')
 
 camera = None  
