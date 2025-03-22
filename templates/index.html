@@ -37,12 +37,10 @@
 <body>
     <h1>AI-Powered Room Assistant 👁️</h1>
 
-    <!-- Video Feed -->
     <div id="video-container">
         <img src="{{ url_for('video_feed') }}" width="100%">
     </div>
 
-    <!-- Chat Box -->
     <div id="chat-box">
         <h3>Chat with AI</h3>
         <div id="chat-messages"></div>
@@ -63,10 +61,8 @@
 
             let chatMessages = document.getElementById("chat-messages");
             
-            // Display user message
             chatMessages.innerHTML += `<p><b>You:</b> ${userInput}</p>`;
             
-            // Send message to Flask API
             fetch("/chat", {
                 method: "POST",
                 body: JSON.stringify({ message: userInput }),
