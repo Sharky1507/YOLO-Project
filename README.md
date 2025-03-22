@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ```
 
 ## Configuration
-Replace `your-gemini-api-key` in the code with your actual **Google Gemini API key**.
+Replace `` in the code with the actual **Google Gemini API key**.
 
 ## Running the App
 ```bash
